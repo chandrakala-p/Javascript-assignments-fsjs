@@ -1,49 +1,89 @@
 // const container;
 // const error;
 
+const error = document.querySelector(".error");
+const age = document.querySelector(".age");
+
+//present date
+let presentDate = new Date();
 function getAge() {
 
 
     let userinputdate = document.getElementById('dob').value;
     let dob = new Date(userinputdate);
 
-    // document.getElementById('years').innerHTML = dob;
 
 
-    if (userinput == null || userinput == '') {
-        document.getElementById("years").innerHTML = "**Choose a date please!";
-        // return false;
-    } else {
+    //to get the day, month, year
+    let myDate = dob.getDate();
+    let myMonth = dob.getMonth();
+    let myYear = dob.getFullYear();
 
-        //calculate month difference from current date in time  
-        var month_diff = Date.now() - dob.getTime();
+    calcAge(presentDate, myDate, myMonth, myYear)
 
-        //convert the calculated difference in date format  
-        var age_dt = new Date(month_diff);
-        // console.log(age_dt)
+}
+getAge();
+// console.log(new Date().getDate());
 
 
-        //extract year from date      
-        var year = age_dt.getUTCFullYear();
 
-        //now calculate the age of the user  
-        var age = Math.abs(year - 1970);
-        // document.getElementById('years').innerHTML = age;
 
-        return age;
+function calcAge(presetDate, myDate, myMonth, myYear) {
+
+    let todaysDate = presetDate.getDate();
+    let todaysMonth = presetDate.getMonth();
+    let todaysYear = presetDate.getFullYear()
+    // console.log(todaysDate)
+    // console.log(todaysMonth)
+    // console.log(todaysYear)
+
+    // check if selected age is eqaul to curret age 
+
+    if (myDate == todaysDate && myMonth == todaysMonth && myYear == todaysYear) {
+        age.style.display = "none";
+        error.style.display = "block";
+        error.textContent = "You are not yet born..!!! Time Traveller";
+        return;
     }
 
+    // check if selected age is greater than curret age 
+
+
+    if (myDate > todaysDate || myMonth > todaysMonth || myYear > todaysYear) {
+        age.style.display = "none";
+        error.style.display = "block";
+        error.textContent = "Invalid age enterd...!!! Time Traveller";
+        return;
+    }
+
+    let mytotalYear = todaysYear - myYear
+    let mytotalMonth = todaysMonth - myMonth
+    let mytotalDays = todaysDate - myDate
+
+
+    error.style.display = "block";
+    // console.log(mytotalMonth)
+    // console.log(mytotalDays)
+
+    displayAge(mytotalYear, mytotalMonth, mytotalDays)
+
 }
 
+function displayAge(mytotalYear, mytotalMonth, mytotalDays) {
+
+    let year = document.getElementById("years");
+    let months = document.getElementById("months");
+    let days = document.getElementById("days");
+    let disc = document.querySelector(".desc")
+
+
+    year.innerText = mytotalYear
+    months.innerText = mytotalMonth
+    days.innerText = mytotalDays
 
 
 
-function calcAge() {
+    disc.innerText = `Your Age is : ${mytotalYear}`
+
 
 }
-
-function displayAge() {
-    document.getElementById('years').innerHTML = getAge();
-
-}
-window.onload.displayAge();
