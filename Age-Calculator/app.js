@@ -33,16 +33,14 @@ function calcAge(presetDate, myDate, myMonth, myYear) {
     let todaysDate = presetDate.getDate();
     let todaysMonth = presetDate.getMonth();
     let todaysYear = presetDate.getFullYear()
-    // console.log(todaysDate)
-    // console.log(todaysMonth)
-    // console.log(todaysYear)
+
 
     // check if selected age is eqaul to curret age 
 
     if (myDate == todaysDate && myMonth == todaysMonth && myYear == todaysYear) {
         age.style.display = "none";
         error.style.display = "block";
-        error.textContent = "You are not yet born..!!! Time Traveller";
+        error.textContent = "You are not yet born...!";
         return;
     }
 
@@ -52,7 +50,7 @@ function calcAge(presetDate, myDate, myMonth, myYear) {
     if (myDate > todaysDate || myMonth > todaysMonth || myYear > todaysYear) {
         age.style.display = "none";
         error.style.display = "block";
-        error.textContent = "Invalid age enterd...!!! Time Traveller";
+        error.textContent = "Invalid age enterd...!!! ";
         return;
     }
 
@@ -62,8 +60,7 @@ function calcAge(presetDate, myDate, myMonth, myYear) {
 
 
     error.style.display = "block";
-    // console.log(mytotalMonth)
-    // console.log(mytotalDays)
+
 
     displayAge(mytotalYear, mytotalMonth, mytotalDays)
 
